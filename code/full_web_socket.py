@@ -11,7 +11,7 @@ import json
 
 MOTOR_OFFSET = 1
 DT = 0.1
-DISTANCE_RANGE = 0.7
+DISTANCE_RANGE = 0.5
 SQUARE_SIZE = 8
 
 #first we need to start the timer at the start of the program
