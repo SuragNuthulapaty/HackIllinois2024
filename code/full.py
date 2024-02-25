@@ -10,7 +10,7 @@ from src import switch as switch_module
 MOTOR_OFFSET = 0.8
 DT = 0.1
 DISTANCE_RANGE = 0.7
-SQUARE_SIZE = 8
+SQUARE_SIZE = 5
 
 #first we need to start the timer at the start of the program
 #the normal behaviour is that the robot will move forward for 10 seconds and then take a 90 degree turn and it will keep doing this so it moves in a square
