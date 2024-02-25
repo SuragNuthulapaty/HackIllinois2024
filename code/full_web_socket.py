@@ -42,19 +42,19 @@ def move_in_square():
             time.sleep(DT)
         
             temp_start_time = time.time()
-            camera.capture()
-            if pic_time%4 == 0:
-                image_array = camera.image_array
-                person_detected = detectPersonInFrame(image_array[::-1, :, :3], ModelType.YOLOv8n)
-                start_time += (time.time() - temp_start_time)
+            # if pic_time%4 == 0:
+            #     camera.capture()
+            #     image_array = camera.image_array
+            #     person_detected = detectPersonInFrame(image_array[::-1, :, :3], ModelType.YOLOv8n)
+            #     start_time += (time.time() - temp_start_time)
 
-            if person_detected == 1:
-                led1.on()
-                led2.on()
-                time.sleep(2)
-                led1.off()
-                led2.off()
-                start_time+=2
+            # if person_detected == 1:
+            #     led1.on()
+            #     led2.on()
+            #     time.sleep(2)
+            #     led1.off()
+            #     led2.off()
+            #     start_time+=2
 
             person_detected = 0
             pic_time += 1
@@ -85,19 +85,19 @@ def move_in_line():
             time.sleep(DT)
         
             temp_start_time = time.time()
-            camera.capture()
-            if pic_time%4 == 0:
-                image_array = camera.image_array
-                person_detected = detectPersonInFrame(image_array[::-1, :, :3], ModelType.YOLOv8n)
-                start_time += (time.time() - temp_start_time)
+            # camera.capture()
+            # if pic_time%4 == 0:
+            #     image_array = camera.image_array
+            #     person_detected = detectPersonInFrame(image_array[::-1, :, :3], ModelType.YOLOv8n)
+            #     start_time += (time.time() - temp_start_time)
 
-            if person_detected == 1:
-                led1.on()
-                led2.on()
-                time.sleep(2)
-                led1.off()
-                led2.off()
-                start_time+=2
+            # if person_detected == 1:
+            #     led1.on()
+            #     led2.on()
+            #     time.sleep(2)
+            #     led1.off()
+            #     led2.off()
+            #     start_time+=2
 
             person_detected = 0
             pic_time += 1
