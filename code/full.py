@@ -7,7 +7,7 @@ from src import distance_sensor as distance_sensor_module
 from src import camera as camera_module
 from src import switch as switch_module
 
-MOTOR_OFFSET = 1
+MOTOR_OFFSET = 0.8
 DT = 0.1
 DISTANCE_RANGE = 0.7
 SQUARE_SIZE = 8
