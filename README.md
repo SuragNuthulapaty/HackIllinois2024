@@ -3,7 +3,7 @@
 [jackson_innovation_studio]: https://mechse.illinois.edu/undergraduate/makerworks/jackson-innovation-studio
 [rechargable_battery]: https://a.co/d/7Zmw2Af
 [camera]: https://a.co/d/5NIxMsJ
-[onshape_workspace]: https://cad.onshape.com/documents/69497152238ace33f89eaddf/w/5a11fc55832b67ccaf01d13f/e/4acefc6cf6d51c6a34c84319
+[onshape_workspace]: https://cad.onshape.com/documents/69497152238ace33f89eaddf/w/5a11fc55832b67ccaf01d13f/e/4acefc6cf6d51c6a34c84319?renderMode=0&uiState=65d9601e2bff8123b6ce1732
 [github_pages]: https://jameskabbes.github.io/HackIllinois2024/
 [motor]: https://www.sparkfun.com/products/13302
 
@@ -42,6 +42,7 @@ John Deere | HackIllinois
   - [Find IP Address](#find-ip-address)
   - [Other Tips](#other-tips)
     - [Connecting to Wifi](#connecting-to-wifi)
+    - [Connecting to IllinoisNet_Guest](#connecting-to-illinoisnet_guest)
 
 - [Assembly](#assembly)
 - [Wiring and Testing](#wiring-and-testing)
@@ -330,6 +331,38 @@ network={
 `sudo systemctl restart networking`
 
 <br>
+
+### Connecting to IllinoisNet_Guest
+
+**1. Go to https://go.illinois.edu/illinoisnetguest and log in, click on "Register a New Device"**
+
+**2. On your pi type in `ifconfig` and under `wlan0` copy the number next to `ether`, that is the mac address for the device registration**
+
+<p align="center">
+  <img
+    src="./static/images/pi_ifconfig.png"
+    alt="Assembly - Chassis"
+    width="500"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="./static/images/illinoisnet_guest_device_registration.png"
+    alt="Assembly - Chassis"
+    width="500"
+  />
+</p>
+
+**3. On the raspberry pi type in `sudo nmtui -> activate a new connection ->` connect to IllinoisNet_Guest**
+
+Now the Pi is connected to the internet.
+
+**4. on the pi enter the command `ifconfig` again and under `wlan0` find the number next to `inet`**
+
+**5. `ssh pi@<inet>` from any device connected to IllinoisNet**
+
+Just like that you've done it. Multiple people can ssh in at once.
 
 # Assembly
 
