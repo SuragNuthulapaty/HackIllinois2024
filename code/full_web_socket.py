@@ -9,7 +9,7 @@ from src import switch as switch_module
 import paho.mqtt.client as mqtt
 import json
 
-MOTOR_OFFSET = 1
+MOTOR_OFFSET = 0.8
 DT = 0.1
 DISTANCE_RANGE = 0.5
 SQUARE_SIZE = 8
