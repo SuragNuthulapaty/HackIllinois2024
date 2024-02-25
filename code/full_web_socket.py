@@ -6,6 +6,8 @@ from video import detectPersonInFrame, ModelType
 from src import distance_sensor as distance_sensor_module
 from src import camera as camera_module
 from src import switch as switch_module
+import paho.mqtt.client as mqtt
+import json
 
 MOTOR_OFFSET = 1
 DT = 0.1
@@ -246,12 +248,45 @@ if __name__ == '__main__':
 
     num_b2_press = 0
 
-    while not switch1.is_pressed:
-        print("sleeping", num_b2_press)
-        if switch2.is_pressed:
-            num_b2_press+=1
+    def on_connect(client, userdata, flags, rc):
+        if rc == 0:
+            print("Connected to MQTT Broker!")
+            # Subscribe to the desired topic
+            client.subscribe("BotPatrol")
+        else:
+            print("Failed to connect, return code: ", rc)
 
-        time.sleep(2)
+    def on_message(client, userdata, msg):
+        global num_b2_press
+        print("Topic:", msg.topic)
+        print("Payload:", msg.payload.decode())
+
+        js = msg.payload.decode().split("\"")
+
+        arg = js[3]
+        print("arg: ", arg)
+
+        match arg:
+            case "square":
+                num_b2_press = 0
+            case "triangle":
+                num_b2_press = 2
+            case "line":
+                num_b2_press = 1
+
+
+        client.disconnect()
+        client.loop_stop()
+
+    client = mqtt.Client()
+
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    broker_address = "192.168.0.101"
+    broker_port = 1883
+    client.connect(broker_address, broker_port)
+    client.loop_forever()
     
     led1.on()
     led2.on()

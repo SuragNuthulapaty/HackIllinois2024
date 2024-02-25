@@ -1,3 +1,8 @@
+
+
+from ultralytics import YOLO 
+from enum import Enum
+
 from ultralytics import YOLO
 from enum import Enum
 import cv2
@@ -8,12 +13,27 @@ from src import motor_rotations
 
 import time
 
+import time
+
 
 
 class ModelType(Enum): 
     YOLOv8n = 'yolov8n.pt'     
     YOLOv8s = 'yolov8s.pt' 
     YOLOv8x = 'yolov8x.pt' 
+
+
+class Camera(Enum): 
+    LOGI_1 = '0'
+    LAPTOP = '1' 
+    LOGI_2 = '2' 
+
+def liveObjDetection(modelType: ModelType):
+    model = YOLO(modelType.value)
+    model.predict(source=Camera.LOGI_1.value, show=True)
+
+if __name__ == '__main__': 
+    liveObjDetection(ModelType.YOLOv8n)
 
 def detectPersonInFrame(frame, modelType: ModelType):
     model = YOLO(modelType.value)
@@ -25,6 +45,7 @@ def detectPersonInFrame(frame, modelType: ModelType):
         return 0
 
 if __name__ == '__main__':
+
     total_seconds = 3
     cycle_time = 3
 
@@ -56,7 +77,11 @@ if __name__ == '__main__':
 
     while True:
         left_motor.forward(1)
+
+        right_motor.forward(0.6)
+
         right_motor.forward(1)
+
         camera.capture()
         image_array = camera.image_array
         #ret, frame = cap.read()
@@ -72,4 +97,7 @@ if __name__ == '__main__':
             led2.on()
             time.sleep(cycle_time)
             led1.off()
+
             led2.off()
+            led2.off()
+
